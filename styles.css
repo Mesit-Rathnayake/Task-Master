@@ -1,0 +1,109 @@
+body{
+    margin:0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #323534;
+}
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #1e292798;
+    border-radius: 25px;
+    box-shadow: 0 2px 10px rgba(253, 207, 0, 0.452);
+}
+.logh2{
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ffcc00;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.form-group {
+    align-items:center;
+    display: flex;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-size: 1em;
+    color:#ffcc00;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-left: 15px;
+    font-size: 1em;
+    background-color:#323534;
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: #ffcc00;
+}
+
+input:focus {
+    outline: none;
+    color:#ffcc00;
+}
+.login-button{
+    width: 100%;
+    margin: 20px auto;
+    display: block;
+    background-color: #ffcc00;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    font-size: 1em;
+    color: #1e2927;
+    font-weight: bold;
+}
+.login-button:hover {
+    background-color: #1e2927;
+    color: #ffcc00;
+}
+.signup-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+a {
+    color: #ffcc00;
+    text-decoration: none;
+}
+p {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+.Header-bar{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: #1e2927;
+}
+.nav-button{
+    background-color: #ffcc00;
+    color: #1e2927;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.nav-button:hover{
+    background-color: #323534;
+    color:#ffcc00;
+}
+.nav-button:active{
+    transform: scale(0.95);
+}
