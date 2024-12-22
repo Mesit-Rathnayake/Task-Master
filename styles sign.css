@@ -9,9 +9,9 @@ body{
     align-items: center;
     justify-content: space-between;
 }
-.login-box {
-    width: 50%;
-    max-width: 400px;
+.sign-box {
+    width: 65%;
+    max-width: 470px;
     padding: 20px;
     background-color: #1e292798;
     border-radius: 25px;
@@ -23,7 +23,7 @@ body{
     justify-content: center;
     margin: 10%;
 }
-.logh2{
+.signh2{
     text-align: center;
     margin-bottom: 30px;
     color: #ffcc00;
@@ -32,32 +32,34 @@ body{
 .form-group {
     align-items:center;
     display: flex;
+    justify-content: space-between;
     margin-bottom: 15px;
 }
 
 label {
-    display: block;
+    width: 30%;
+    text-align: left;
     font-size: 1em;
     color:#ffcc00;
 }
 
 input {
-    width: 100%;
+    width: 65%;
     padding: 10px;
-    margin-top: 5px;
-    margin-left: 15px;
+    margin-left: 0;
     font-size: 1em;
     background-color:#323534;
     border-radius: 20px;
     border-width: 1px;
     border-color: #ffcc00;
+    color: #ffcc00;
 }
 
 input:focus {
     outline: none;
     color:#ffcc00;
 }
-.login-button{
+.sign-button{
     width: 100%;
     margin: 20px auto;
     display: block;
@@ -71,11 +73,11 @@ input:focus {
     color: #1e2927;
     font-weight: bold;
 }
-.login-button:hover {
+.sign-button:hover {
     background-color: #1e2927;
     color: #ffcc00;
 }
-.signup-link {
+.login-link {
     text-align: center;
     margin-top: 15px;
 }
@@ -89,7 +91,7 @@ p {
     text-decoration: none;
 }
 
-.signup-link a:hover {
+.login-link a:hover {
     text-decoration: underline;
 }
 .Header-bar{
@@ -126,3 +128,32 @@ p {
     background-position: center;
     height: 100vh;
 }
+footer{
+    background-color: #0b2016;
+    color: #ffcc00;
+    padding: 20px;
+    text-align: center;
+}
+footer .footer-content{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+footer .social-links {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  footer .social-links li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  footer .social-links a {
+    color:#ffcc00;
+    text-decoration: none;
+  }
+  
+  footer .social-links a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
