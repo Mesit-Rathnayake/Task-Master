@@ -130,32 +130,41 @@ p {
     background-position: center;
     height: 100vh;
 }
-footer{
-    background-color: #0b2016;
+footer {
+    background-color: rgba(11, 32, 22, 0.8);
     color: #ffcc00;
     padding: 20px;
-    text-align: center;
+    position: relative;
+    z-index: 1;
+    display: flex; /* Flexbox for horizontal layout */
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Align items vertically in the center */
+    gap: 20px; /* Space between elements */
 }
-footer .footer-content{
-    max-width: 1200px;
-    margin: 0 auto;
+
+footer .footer-content {
+    margin: 0;
+    flex: none; /* Keep it inline and prevent it from stretching */
 }
+
 footer .social-links {
     list-style-type: none;
-    padding: 0;
-  }
-  
-  footer .social-links li {
-    display: inline;
-    margin-right: 10px;
-  }
-  
-  footer .social-links a {
-    color:#ffcc00;
+    display: flex; /* Arrange social links in a row */
+    gap: 10px; /* Add space between links */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+footer .social-links li {
+    display: inline; /* Keep list items inline */
+}
+
+footer .social-links a {
+    color: #ffcc00;
     text-decoration: none;
-  }
-  
-  footer .social-links a:hover {
+}
+
+footer .social-links a:hover {
     text-decoration: underline;
     cursor: pointer;
-  }
+}

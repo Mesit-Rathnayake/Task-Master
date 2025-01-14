@@ -36,6 +36,7 @@ body{
   height: auto;
   max-width: 100%;
 }
+/*
 footer{
   background-color: #0b2016;
   color: #ffcc00;
@@ -65,6 +66,7 @@ footer .social-links a:hover {
   text-decoration: underline;
   cursor: pointer;
 }
+*/
   .task-container{
     padding: 20px;
     color: rgb(245, 255, 240);

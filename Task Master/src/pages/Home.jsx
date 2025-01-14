@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../styles/Home.css";
 import image from "../assets/Images/Logo.png";
+import Footer from '../components/footer';
 
 
 export default function Home() {
@@ -69,25 +70,7 @@ export default function Home() {
           ))}
         </section>
       </main>
-      <footer>
-        <div className="footer-content">
-          <p>Contact Us:</p>
-          <p>Email: support@taskmaster.com</p>
-          <p>Phone: 123-456-7890</p>
-          <p>Follow us on:</p>
-          <ul className="social-links">
-            <li key="facebook">
-              <a href="https://facebook.com">Facebook</a>
-            </li>
-            <li key="twitter">
-              <a href="https://twitter.com">Twitter</a>
-            </li>
-            <li key="instagram">
-              <a href="https://instagram.com">Instagram</a>
-            </li>
-          </ul>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 }
