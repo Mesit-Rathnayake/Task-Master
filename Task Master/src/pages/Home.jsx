@@ -1,38 +1,72 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "../styles/Home.css";
 import image from "../assets/Images/Logo.png";
 import Footer from '../components/footer';
 
-
 export default function Home() {
   const [tasks, setTasks] = useState([]);
 
-  const addTask = () => {
+  // Fetch tasks from the server
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const response = await axios.get("http://localhost:8081/tasks", { params: { userId: 1 } });
+        setTasks(response.data);
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+      }
+    };
+    fetchTasks();
+  }, []);
+
+  // Add a new task to the server
+  const addTask = async () => {
     const taskName = document.getElementById("task-name").value;
     const deadline = document.getElementById("task-deadline").value;
     const priority = document.getElementById("task-priority").value;
 
     if (taskName && deadline) {
-      const newTask = { id: Date.now(), name: taskName, deadline, priority, status: "to-do" };
-      setTasks((prevTasks) => [...prevTasks, newTask]);
+      const newTask = { name: taskName, deadline, priority, status: "to-do", userId: 1 };
+      try {
+        await axios.post("http://localhost:8081/addTask", newTask);
+        setTasks((prevTasks) => [...prevTasks, { ...newTask, id: Date.now() }]);
+      } catch (error) {
+        console.error("Error adding task:", error);
+      }
     }
   };
 
-  const moveTask = (id, newStatus) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) => (task.id === id ? { ...task, status: newStatus } : task))
-    );
+  // Move task status
+  const moveTask = async (id, newStatus) => {
+    try {
+      await axios.put("http://localhost:8081/updateTask", { id, status: newStatus });
+      setTasks((prevTasks) =>
+        prevTasks.map((task) => (task.id === id ? { ...task, status: newStatus } : task))
+      );
+    } catch (error) {
+      console.error("Error updating task:", error);
+    }
   };
+  const handleLogout = () => {
+    // Clear authentication data
+    localStorage.removeItem("userToken"); // Adjust if using sessionStorage or cookies
+    sessionStorage.clear(); 
+  
+    // Redirect to Start page
+    window.location.href = "/start"; // Update the path based on your routing setup
+  };
+  
 
   return (
     <div>
       <header className="Header-bar">
         <div className="logo">
-        <img src={image} alt="Task Master Logo" />
+          <img src={image} alt="Task Master Logo" />
         </div>
         <nav className="head-buttons">
           <button className="nav-button">Home</button>
-          <button className="nav-button">Calendar</button>
+          <button className="nav-button" onClick={handleLogout}>Log Out</button>
         </nav>
       </header>
       <main className="task-container">
@@ -70,7 +104,7 @@ export default function Home() {
           ))}
         </section>
       </main>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
