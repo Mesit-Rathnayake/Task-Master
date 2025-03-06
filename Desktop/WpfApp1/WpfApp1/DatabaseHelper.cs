@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 
 namespace WpfApp1
 {
@@ -17,12 +18,19 @@ namespace WpfApp1
 
         public static void AddTask(Task task)
         {
-            db.Insert(task);
+            if (task.Id == null)
+            {
+                db.Insert(task); // Insert new task
+            }
+            else
+            {
+                db.Update(task); // Update existing task
+            }
         }
 
         public static void DeleteTask(Task task)
         {
-            db.Delete(task);
+            db.Delete(task); // Delete task from database
         }
 
         public static ObservableCollection<Task> GetTasks(string status)

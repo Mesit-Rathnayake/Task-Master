@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,9 +16,9 @@ namespace WpfApp1
         public MainPage()
         {
             InitializeComponent();
-            ToDoTasks = new ObservableCollection<Task>();
-            DoingTasks = new ObservableCollection<Task>();
-            DoneTasks = new ObservableCollection<Task>();
+            ToDoTasks = new ObservableCollection<Task>(DatabaseHelper.GetTasks("To-Do"));
+            DoingTasks = new ObservableCollection<Task>(DatabaseHelper.GetTasks("Doing"));
+            DoneTasks = new ObservableCollection<Task>(DatabaseHelper.GetTasks("Done"));
 
             // Bind the ListBoxes to the ObservableCollections
             ToDoListBox.ItemsSource = ToDoTasks;
@@ -31,8 +32,13 @@ namespace WpfApp1
             string deadline = DeadlinePicker.SelectedDate?.ToString("MM/dd/yyyy") ?? "N/A"; // Check if date is selected
             string priority = (PrioritySelector.SelectedItem as ComboBoxItem)?.Content.ToString() ?? "N/A"; // Get the selected priority
 
-            // Add the new task to the To-Do list with the priority
-            ToDoTasks.Add(new Task { TaskName = taskName, Deadline = deadline, Status = "To-Do", Priority = priority });
+            Task newTask = new Task { TaskName = taskName, Deadline = deadline, Status = "To-Do", Priority = priority };
+
+            // Add the new task to the database
+            DatabaseHelper.AddTask(newTask);
+
+            // Add the new task to the To-Do list
+            ToDoTasks.Add(newTask);
 
             // Clear the input fields
             TaskNameInput.Clear();
@@ -48,6 +54,9 @@ namespace WpfApp1
                 ToDoTasks.Remove(task);
                 task.Status = "Doing";
                 DoingTasks.Add(task);
+
+                // Update the task status in the database
+                DatabaseHelper.AddTask(task);
             }
         }
 
@@ -59,11 +68,14 @@ namespace WpfApp1
                 DoingTasks.Remove(task);
                 task.Status = "Done";
                 DoneTasks.Add(task);
+
+                // Update the task status in the database
+                DatabaseHelper.AddTask(task);
             }
         }
+
         private void DeleteTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            // Get the task from the button's DataContext
             var task = (sender as Button)?.DataContext as Task;
             if (task != null)
             {
@@ -80,8 +92,12 @@ namespace WpfApp1
                 {
                     DoneTasks.Remove(task);
                 }
+
+                // Delete the task from the database
+                DatabaseHelper.DeleteTask(task);
             }
         }
+
         private void EditTaskButton_Click(object sender, RoutedEventArgs e)
         {
             var task = (sender as Button)?.DataContext as Task;
@@ -119,6 +135,9 @@ namespace WpfApp1
                 task.Deadline = deadlinePicker.SelectedDate?.ToString("MM/dd/yyyy") ?? "N/A";
                 task.Priority = (prioritySelector.SelectedItem as ComboBoxItem)?.Content.ToString() ?? "N/A";
 
+                // Update task in the database
+                DatabaseHelper.AddTask(task);  // Update in database (same method for adding and updating in SQLite)
+
                 // Refresh UI by resetting data binding
                 ToDoListBox.Items.Refresh();
                 DoingListBox.Items.Refresh();
@@ -140,8 +159,6 @@ namespace WpfApp1
             editWindow.Content = grid;
             editWindow.ShowDialog();
         }
-
-
     }
 
     public class Task
