@@ -56,12 +56,15 @@
                 <ListBox Name="ToDoListBox" Margin="5" BorderBrush="#ffcc04" BorderThickness="1">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
+                            <StackPanel HorizontalAlignment="Center">
                                 <TextBlock Text="{Binding TaskName}" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding Deadline}"/>
                                 <TextBlock Text="{Binding Priority}" FontWeight="Bold" Foreground="Red"/>
-                                <Button Content="Start" Click="StartTaskButton_Click"/>
-                                <Button Content="Delete" Click="DeleteTaskButton_Click" Margin="5"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <Button Content="Start" Click="StartTaskButton_Click" Margin="10"/>
+                                <Button Content="Edit" Click="EditTaskButton_Click" Margin="10"/>
+                                <Button Content="Delete" Click="DeleteTaskButton_Click" Margin="10"/>
+                                </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -74,13 +77,16 @@
                 <ListBox Name="DoingListBox" Margin="5" BorderBrush="#ffcc04" BorderThickness="1">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
+                            <StackPanel HorizontalAlignment="Center">
                                 <TextBlock Text="{Binding TaskName}" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding Deadline}"/>
                                 <TextBlock Text="{Binding Priority}" FontWeight="Bold" Foreground="Red"/>
-                                <Button Content="Complete" Click="CompleteTaskButton_Click"/>
-                                <Button Content="Delete" Click="DeleteTaskButton_Click" Margin="5"/>
-                            </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <Button Content="Complete" Click="CompleteTaskButton_Click" Margin="10"/>
+                                <Button Content="Edit" Click="EditTaskButton_Click" Margin="10"/>
+                                <Button Content="Delete" Click="DeleteTaskButton_Click" Margin="10"/>
+                                </StackPanel>
+                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
@@ -92,11 +98,11 @@
                 <ListBox Name="DoneListBox" Margin="5" BorderBrush="#ffcc04" BorderThickness="1">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
+                            <StackPanel  HorizontalAlignment="Center">
                                 <TextBlock Text="{Binding TaskName}" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding Deadline}"/>
                                 <TextBlock Text="{Binding Priority}" FontWeight="Bold" Foreground="Red"/>
-                                <Button Content="Delete" Click="DeleteTaskButton_Click" Margin="5"/>
+                                <Button Content="Delete" Click="DeleteTaskButton_Click" Margin="10"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
